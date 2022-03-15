@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Coba";
+}
+
+<h2>Coba</h2>
+
+<body ng-app>
+    First Name:
+    <input type="text" ng-model="fname" />
+    <br /> Last Name:
+    <input type="text" ng-model="lname" />
+    <br /> Result: {{fname+''+lname}}
+</body>
+
+<script src="Scripts/angular.min.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+
+
+<body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <p>
+        <select id='sel'>
+            <option value=''>-- Select --</option>
+        </select>
+    </p>
+
+    <p>
+        <select id='sel1'>
+            <option value=''>-- Select --</option>
+        </select>
+    </p>
+</body>
+
+<script>
+    $(document).ready(function () {
+
+        let arrData = [];
+
+        // Fill the first dropdown with data.
+        $.getJSON('countries.json', function (data) {
+
+            let arr_city = [];
+
+            $.each(data, function (index, value) {
+                arr_city.push(value.Type);
+                arrData = data;
+            });
+
+            // Remove duplicates. We want unique country.
+            arr_city = Array.from(new Set(arr_city));
+            // ref (https://www.encodedna.com/javascript/remove-duplicates-in-javascript-array-using-es6-set-and-from.htm)
+
+            // Fill the first dropdown with unique country.
+            $.each(arr_city, function (index, value) {
+                $('#sel').append('<option value="' + value + '">' + value + '</option>');
+            });
+        });
+
+        $('#sel').change(function () {
+            let type = this.options[this.selectedIndex].value;
+
+            let filterData = arrData.filter(function (value) {
+                return value.Type === type;
+            });
+
+            $('#sel1')
+                .empty()
+                .append('<option value=""> -- Select City -- </option>');
+
+            $.each(filterData, function (index, value) {
+                // Now, fill the second dropdown list with city.
+                $('#sel1').append('<option value="' + value.ID + '">' + value.Name + '</option>');
+            });
+        });
+    });
+</script>

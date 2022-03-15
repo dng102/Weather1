@@ -29,6 +29,14 @@ namespace Weather.Controllers
 
             return View();
         }
+
+        public ActionResult Coba()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
         public ActionResult Weather()
         {
             ViewBag.Message = "Your contact page.";

@@ -1,0 +1,112 @@
+[
+
+  {
+    "ID": "001",
+    "Name": "Herat",
+    "Type": "Afghanistan"
+  },
+
+  {
+    "ID": "002",
+    "Name": "Kabul",
+    "Type": "Afghanistan"
+  },
+
+  {
+    "ID": "003",
+    "Name": "Kandahar",
+    "Type": "Afghanistan"
+  },
+  {
+    "ID": "004",
+    "Name": "Molah",
+    "Type": "Afghanistan"
+  },
+  {
+    "ID": "005",
+    "Name": "Rana",
+    "Type": "Afghanistan"
+  },
+  {
+    "ID": "006",
+    "Name": "Shar",
+    "Type": "Afghanistan"
+  },
+  {
+    "ID": "007",
+    "Name": "Sharif",
+    "Type": "Afghanistan"
+  },
+  {
+    "ID": "008",
+    "Name": "Wazir Akbar Khan",
+    "Type": "Afghanistan"
+  },
+  {
+    "ID": "009",
+    "Name": "Abberton",
+    "Type": "United Kingdom"
+  },
+  {
+    "ID": "010",
+    "Name": "Abbots Langley",
+    "Type": "United Kingdom"
+  },
+  {
+    "ID": "011",
+    "Name": "Aberaeron",
+    "Type": "United Kingdom"
+  },
+  {
+    "ID": "012",
+    "Name": "Aberchirder",
+    "Type": "United Kingdom"
+  },
+  {
+    "ID": "013",
+    "Name": "Abercynon",
+    "Type": "United Kingdom"
+  },
+  {
+    "ID": "014",
+    "Name": "London",
+    "Type": "United Kingdom"
+  },
+  {
+    "ID": "015",
+    "Name": "Washington",
+    "Type": "United States"
+  },
+  {
+    "ID": "016",
+    "Name": "Boston",
+    "Type": "United States"
+  },
+  {
+    "ID": "017",
+    "Name": "California",
+    "Type": "United States"
+  },
+  {
+    "ID": "018",
+    "Name": "Jakarta",
+    "Type": "Indonesia"
+  },
+  {
+    "ID": "019",
+    "Name": "Surabaya",
+    "Type": "Indonesia"
+  },
+  {
+    "ID": "020",
+    "Name": "Abbotsford",
+    "Type": "Australia"
+  },
+  {
+    "ID": "021",
+    "Name": "Canberra",
+    "Type": "Australia"
+
+  }
+
+]

@@ -2,95 +2,163 @@
     ViewBag.Title = "Weather";
 }
 
-<h1>Search City and Get Weather Forecast</h1>
+<h1>Sample Api to get weather for a city</h1>
 
-<div>
-    <strong>City Name  :</strong><input id="txtCity" type="text" />
-    <br />
-    <br />
-    <button id="btnSubmit">Get Weather Forecast</button>
-</div>
+<body ng-app>
+    @*First Name:
+    <input type="text" ng-model="fname" />
+    <br /> Last Name:
+    <input type="text" ng-model="lname" />
+    <br /> Result: {{fname+''+lname}}*@
+
+    <div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <p>
+            <select id='sel'>
+                <option value=''>-- Select --</option>
+            </select>
+        </p>
+
+        <p>
+            <select id='sel1' ng-model="selitem" ng-change="getselectval()">
+                <option value=''>-- Select --</option>
+            </select>
+        </p>
+
+        <div>
+            <strong>City Name  :</strong><input id="txtCity" type="text" ng-model="lname" />
+            <br />
+            <br />
+            <button id="btnSubmit">Get Weather Forecast</button>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+
+                let arrData = [];
+
+                // Fill the first dropdown with data.
+                $.getJSON('countries.json', function (data) {
+
+                    let arr_city = [];
+
+                    $.each(data, function (index, value) {
+                        arr_city.push(value.Type);
+                        arrData = data;
+                    });
+
+                    // Remove duplicates. We want unique country.
+                    arr_city = Array.from(new Set(arr_city));
+                    // ref (https://www.encodedna.com/javascript/remove-duplicates-in-javascript-array-using-es6-set-and-from.htm)
+
+                    // Fill the first dropdown with unique country.
+                    $.each(arr_city, function (index, value) {
+                        $('#sel').append('<option value="' + value + '">' + value + '</option>');
+                    });
+                });
+
+                $('#sel').change(function () {
+                    let type = this.options[this.selectedIndex].value;
+
+                    let filterData = arrData.filter(function (value) {
+                        return value.Type === type;
+                    });
+
+                    $('#sel1')
+                        .empty()
+                        .append('<option value=""> -- Select City -- </option>');
+
+                    $.each(filterData, function (index, value) {
+                        // Now, fill the second dropdown list with city.
+                        $('#sel1').append('<option value="' + value.Name + '">' + value.Name + '</option>');
+                    });
+                });
+                $('#sel1').change(function () {
+                    document.getElementById("txtCity").value = document.getElementById("sel1").value;
+                });
+            });
+            $("#btnSubmit").click(function () {
+
+                var cityname = $("#txtCity").val();
+                if (cityname.length > 0) {
+                    $.ajax({
+                        url: "http://localhost:1149/Home/WeatherDetail?City=" + cityname,
+                        type: "POST",
+                        success: function (rsltval) {
+                            var data = JSON.parse(rsltval);
+                            console.log(data);
+                            $("#lblCity").html(data.City);
+                            $("#lblCountry").text(data.Country);
+                            $("#lblLat").text(data.Lat);
+                            $("#lblLon").text(data.Lon);
+                            $("#lblDescription").text(data.Description);
+                            $("#lblHumidity").text(data.Humidity);
+                            $("#lblTempFeelsLike").text(data.TempFeelsLike);
+                            $("#lblTemp").text(data.Temp);
+                            $("#lblTempMax").text(data.TempMax);
+                            $("#lblTempMin").text(data.TempMin);
+                            $("#imgWeatherIconUrl").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");
+                            //data - response from server
+                        },
+                        error: function () {
+
+                        }
+                    });
+                }
+                else {
+                    alert("City Not Found");
+                }
+            });
+        </script>
+
+    </div>
 
 
-<div>
-    <h2>Weather Forecast</h2>
-    <table>
-        <tr>
-            <td>Weather Symbol Icon <img id="imgWeatherIconUrl" src="" title="Weather Icon" /></td>
-        </tr>
-        <tr>
-            <td>
-                <strong>City: </strong>
-                <span id="lblCity"></span>  ,
-                <span id="lblCountry"></span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <strong>Latitude: </strong>
-                <label id="lblLat"></label><br />
-                <strong>Longitude: </strong>
-                <label id="lblLon"></label>
+    <div>
+        <h2>Weather Forecast</h2>
+        <table>
+            <tr>
+                <td>Weather Symbol Icon <img id="imgWeatherIconUrl" src="" title="Weather Icon" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>City: </strong>
+                    <span id="lblCity"></span>  ,
+                    <span id="lblCountry"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Latitude: </strong>
+                    <label id="lblLat"></label><br />
+                    <strong>Longitude: </strong>
+                    <label id="lblLon"></label>
 
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <strong>Description:</strong>
-                <label id="lblDescription"></label><br />
-                <strong>Humidity:</strong>
-                <label id="lblHumidity"></label>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Temperature (Feels Like)<label id="lblTempFeelsLike"></label><br />
-                Temperature <label id="lblTemp"></label><br />
-                Temperature (Min)<label id="lblTempMin"></label><br />
-                Temperature (Max)<label id="lblTempMax"></label><br />
-            </td>
-        </tr>
-
-
-    </table>
-</div>
-
-<script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Description:</strong>
+                    <label id="lblDescription"></label><br />
+                    <strong>Humidity:</strong>
+                    <label id="lblHumidity"></label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Temperature (Feels Like)<label id="lblTempFeelsLike"></label><br />
+                    Temperature <label id="lblTemp"></label><br />
+                    Temperature (Min)<label id="lblTempMin"></label><br />
+                    Temperature (Max)<label id="lblTempMax"></label><br />
+                </td>
+            </tr>
 
 
-    $("#btnSubmit").click(function () {
+        </table>
+    </div>
+</body>
 
-        var cityname = $("#txtCity").val();
-        if (cityname.length > 0)
-        {
-        $.ajax({
-            url: "http://localhost:1149/Home/WeatherDetail?City="+cityname,
-            type: "POST",
-            success: function (rsltval) {
-                var data =JSON.parse(rsltval);
-                console.log(data);
-                $("#lblCity").html(data.City);
-                $("#lblCountry").text(data.Country);
-                $("#lblLat").text(data.Lat);
-                $("#lblLon").text(data.Lon);
-                $("#lblDescription").text(data.Description);
-                $("#lblHumidity").text(data.Humidity);
-                $("#lblTempFeelsLike").text(data.TempFeelsLike);
-                $("#lblTemp").text(data.Temp);
-                $("#lblTempMax").text(data.TempMax);
-                $("#lblTempMin").text(data.TempMin);
-                $("#imgWeatherIconUrl").attr("src", "http://openweathermap.org/img/w/" + data.WeatherIcon + ".png");
-                //data - response from server
-            },
-            error: function () {
-
-            }
-        });
-        }
-        else
-        {
-            alert("City Not Found");
-        }
-    });
-
-</script> 
+<script src="Scripts/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>

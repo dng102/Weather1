@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "AngularS";
+}
+
+<h2>AngularS</h2>
+
+<head>
+    <title>Angular JS Includes</title>
+    <style>
+        table, th, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+
+            table tr:nth-child(odd) {
+                background-color: #f2f2f2;
+            }
+
+            table tr:nth-child(even) {
+                background-color: #ffffff;
+            }
+    </style>
+</head>
+<body>
+    <h2>AngularJS Sample Application</h2>
+    <div ng-app="" ng-controller="categoryController">
+        <table>
+            <tr>
+                <th>Category ID</th>
+                <th>Category Name</th>
+            </tr>
+            <tr ng-repeat="category in categories">
+                <td>{{ category.CategoryID }}</td>
+                <td>{{ category.CategoryName }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div ng-controller="MyCtrl">
+        <select ng-model="selected">
+            <option ng-repeat="item in data" value="{{item[0]}}">{{item[1]}}</option>
+        </select>
+        <div>Selected: {{selected}}</div>
+    </div>
+    <script>
+        function categoryController($scope, $http) {
+            var url = "http://localhost:1149/category.txt";
+            $http.get(url).success(function (response) {
+                $scope.categories = response;
+            });
+        }
+
+        var myApp = angular.module('myApp', []);
+        function MyCtrl($scope) {
+            $scope.data = [["1", "Elmer Chacon"], ["2", "Juan Perez"], ["3", "Mauricio Lopez"]];
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+
+
+</body>
