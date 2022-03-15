@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather", "Weather\Weather.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Tests", "Weather.Tests\Weather.Tests.csproj", "{C49B8463-B983-454C-9EA9-19818D833519}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumAutomatedUnitTest", "SeleniumAutomatedUnitTest\SeleniumAutomatedUnitTest.csproj", "{2F7DE61C-BF70-4D54-8E26-5239420299E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C49B8463-B983-454C-9EA9-19818D833519}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C49B8463-B983-454C-9EA9-19818D833519}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C49B8463-B983-454C-9EA9-19818D833519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F7DE61C-BF70-4D54-8E26-5239420299E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F7DE61C-BF70-4D54-8E26-5239420299E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F7DE61C-BF70-4D54-8E26-5239420299E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F7DE61C-BF70-4D54-8E26-5239420299E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

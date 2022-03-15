@@ -50,5 +50,18 @@ namespace Weather.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void Weather()
+        {
+            // Arrange
+            HomeController controller = new HomeController();
+
+            // Act
+            ViewResult result = controller.Weather() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
