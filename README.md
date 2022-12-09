@@ -1,5 +1,5 @@
 # Weather1
-Simple website to get weather for a city
+Simple website to get weather for a city using .Net
 
 Please adjust the localhost port based on your local IIS port..
 
